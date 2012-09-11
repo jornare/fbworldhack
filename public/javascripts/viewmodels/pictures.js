@@ -7,4 +7,20 @@ var picturesViewModel = function(){
 		
 	};
 	
+	this.showPicture = function( url ){
+		socket.emit('showpicture',{url:url});
+	};
+	
 };
+
+$(document).ready(function(){
+	var vm = new picturesViewModel();
+	ko.applyBindings(vm);
+	
+	socket.on('showpicture', function(data){
+		if(data && data.url){
+			vm.showPicture(data.url);
+		}
+		
+	});
+});

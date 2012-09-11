@@ -2,8 +2,5 @@ extends layout
 
 block content
 	#container(class='container')
-		#logo(class='sixteen columns logo')
-			h1= title
-			p Welcome to #{title}
-			p Yahoo!
-		#n
+		#picturecontainer
+			<img data-bind="attr{src:picture}">

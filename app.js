@@ -39,3 +39,10 @@ http.createServer(app).listen(app.get('port'), function(){
 
 
 //events
+io.sockets.on('connection', function (socket) {
+	  //socket.emit('news', { hello: 'world' });
+	  socket.on('showpicture', function (data) {
+	    console.log(data);
+	    io.sockets.emit(showpicture, data);
+	  });
+	});
