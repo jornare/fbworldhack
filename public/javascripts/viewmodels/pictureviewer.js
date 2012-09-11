@@ -17,5 +17,6 @@ $(document).ready(function(){
 		if(data && data.url){
 			vm.showPicture(data.url);
 		}
+		console.log(data);
 	});
 });
