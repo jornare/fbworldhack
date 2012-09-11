@@ -5,4 +5,5 @@ block content
 		#logo(class='sixteen columns logo')
 			h1= title
 		#albums(data-bind='foreach: pictures')
-			<img data-bind="attr:{src:src}">
+			<img data-bind="attr:{src:src}" />
+		<a href="javascript:void(0)" data-bind="click:function(){showPicture('https://www.google.com/images/srpr/logo3w.png');}">show logo</a>

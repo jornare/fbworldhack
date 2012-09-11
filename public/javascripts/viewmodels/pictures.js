@@ -1,6 +1,6 @@
 var picturesViewModel = function(){
 	var self = this;
-	this.pictures = ko.observableArray();
+	this.pictures = ko.observableArray([]);
 	
 	this.getPictures = function(){
 		
@@ -19,7 +19,7 @@ $(document).ready(function(){
 	
 	socket.on('showpicture', function(data){
 		if(data && data.url){
-			vm.showPicture(data.url);
+			//alert('show: '+data.url);
 		}
 		
 	});

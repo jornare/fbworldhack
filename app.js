@@ -35,6 +35,7 @@ app.get('/pictureviewer', routes.pictureviewer);
 app.get('/users', user.list);
 
 var server = http.createServer(app);
+
 server.listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
@@ -45,6 +46,6 @@ io.sockets.on('connection', function (socket) {
 	  //socket.emit('news', { hello: 'world' });
 	  socket.on('showpicture', function (data) {
 	    console.log(data);
-	    io.sockets.emit(showpicture, data);
+	    io.sockets.emit('showpicture', data);
 	  });
 	});

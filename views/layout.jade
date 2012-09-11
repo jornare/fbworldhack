@@ -24,9 +24,13 @@ html(lang="en")
 		link(rel='apple-touch-icon', href='images/apple-touch-icon.png')
 		link(rel='apple-touch-icon', sizes='72x72', href='images/apple-touch-icon-72x72.png')
 		link(rel='apple-touch-icon', sizes='114x114', href='images/apple-touch-icon-114x114.png')	    
+		script(src='/socket.io/socket.io.js')
 		script(src='/javascripts/jquery-1.7.2.min.js')
 		script(src='/javascripts/knockout-2.1.0.js')
-		script(src='/javascripts/viewmodels/albums.js')
+		script(type='text/javascript')
+			var socket=io.connect('http://localhost');
+		script(src='/javascripts/viewmodels/'+viewModel+'.js')
+
 	body
 		script(src='/javascripts/fbinit.js')
 		block content
