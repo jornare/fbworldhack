@@ -11,6 +11,10 @@ window.fbAsyncInit = function() {
 		facebook.login();
 	});
 
+	$("#inviteFriends").click(function() {
+		facebook.inviteFriends();
+	})
+
 	// listen for and handle auth.statusChange events
 	FB.Event.subscribe('auth.statusChange', facebook.handleStatusChange);
 
