@@ -51,21 +51,24 @@ window.facebook = {
 		FB.login(function(response) {
 		   if (response.authResponse) {
 		     console.log('Welcome!  Fetching your information.... ');
-		     FB.api('/me', function(response) {
-		       console.log('Good to see you, ' + response.name + '.');
-		     });
 		   } else {
 		     console.log('User cancelled login or did not fully authorize.');
 		   }
 		 }, { scope: 'user_photos,friends_photos,publish_actions' });
 	},
 
+	cacheMyInfo: function () {
+	     FB.api('/me', function(response) {
+	       console.log('Good to see you, ' + response.name + '.');
+	       facebook.me = response;
+	     });
+	},
+
 	handleStatusChange: function(response) {
 	  if (response.authResponse) {
 	    // user has auth'd your app and is logged into Facebook
 	    FB.api('/me', function(me){
-	      if (me.name) {
-	      }
+	      facebook.cacheMyInfo();
 	    })
 	  } else {
 	    // user has not auth'd your app, or is not logged into Facebook
@@ -73,11 +76,27 @@ window.facebook = {
 	},
 
 	getMyAlbums: function () {
-
+		return facebook.getAlbumsForUser(facebook.me.id);
 	},
 
 	getAlbumsForUser: function (userId) {
+		var deferred = $.Deferred();
 
+		FB.api('/' + userId + '/albums', function(response) {
+			deferred.resolve(response);
+		});
+
+		return deferred;
+	},
+
+	getPhotosFromAlbum: function (albumId) {
+		var deferred = $.Deferred();
+
+		FB.api('/' + albumId + '/photos', function(response) {
+			deferred.resolve(response);
+		});
+
+		return deferred;
 	}
 
 };
