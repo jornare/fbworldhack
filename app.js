@@ -27,7 +27,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
+app.get('/', routes.albums);
+app.get('/pictures', routes.pictures);
+app.get('/albums', routes.albums);
+app.get('/pictureviewer', routes.pictureviewer);
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
