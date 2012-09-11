@@ -3,7 +3,10 @@ var picturesViewModel = function(){
 	this.pictures = ko.observableArray([]);
 	
 	this.getPictures = function(){
-		
+
+		facebook.getPhotosFromAlbum(getParameterByName('album_id')).done(function(response){
+			self.pictures(response.data);
+		});
 		
 	};
 	
@@ -22,5 +25,9 @@ $(document).ready(function(){
 			//alert('show: '+data.url);
 		}
 		
-	});
+	});	
+
+	facebook.ready = function() {
+		vm.getPictures();
+	};	
 });
