@@ -61,6 +61,10 @@ window.facebook = {
 	     FB.api('/me', function(response) {
 	       console.log('Good to see you, ' + response.name + '.');
 	       facebook.me = response;
+	       
+		    if ($.isFunction(facebook.ready)) {
+		    	facebook.ready();
+		    };
 	     });
 	},
 
@@ -70,6 +74,7 @@ window.facebook = {
 	    FB.api('/me', function(me){
 	      facebook.cacheMyInfo();
 	    })
+
 	  } else {
 	    // user has not auth'd your app, or is not logged into Facebook
 	  }

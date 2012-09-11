@@ -5,5 +5,5 @@ block content
 		#logo(class='sixteen columns logo')
 			h1= title
 		#albums(data-bind='foreach: albums')
-			<img data-bind="attr:{src:src}">
+			<img data-bind="attr:{src:'https://graph.facebook.com/' + cover_photo + '/picture?type=normal'}">
 			
