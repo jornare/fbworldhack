@@ -4,6 +4,6 @@ block content
 	#container(class='container')
 		#logo(class='sixteen columns logo')
 			h1= title
-			p Welcome to #{title}
-			p Yahoo!
-		#n
+		#albums(data-bind='foreach: albums')
+			<img data-bind="attr:{src:src}">
+			
