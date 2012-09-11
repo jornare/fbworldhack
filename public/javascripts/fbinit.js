@@ -97,6 +97,34 @@ window.facebook = {
 		});
 
 		return deferred;
+	},
+
+	getPhotoById: function (id) {
+		var deferred = $.Deferred();
+
+		FB.api('/' + id, function(response) {
+			deferred.resolve(response);
+		});
+
+		return deferred;	
+	},
+
+	getPhotoUrl: function (id) {
+		return facebook.getPhotoUrlWithSize(id, 'normal');
+	},
+
+	getPhotoUrlWithSize: function (id, size) {
+		return 'https://graph.facebook.com/' + id + '/picture?type=' + size;
+	},
+
+	publishViewAlbumAction: function (albumId) {
+		var deferred = $.Deferred();
+
+		FB.api('/me/social-photos:view?photo_album=http://localhost:3000/album/' + albumId, 'POST', {}, function (response) {
+			deferred.resolve(response);
+		});
+
+		return deferred;
 	}
 
 };
